@@ -1,0 +1,46 @@
+# dependencies
+node_modules/
+/.pnp
+.pnp.js
+/node_modules
+# testing
+/coverage
+__snapshots__
+
+# production
+/build
+
+# misc
+/.vscode
+/.idea
+.DS_Store
+.env.local
+.env.local.file
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+test-report.xml
+
+# audit
+audit-resolve.json
+
+package-lock.json
+yarn.lock
+
+# Sonarqube coverage
+.scannerwork
+
+# mockServiceWorker init file (MSW)
+public/mockServiceWorker.js
+
+# Cypress tests
+cypress/videos
+
+local/
+.env
+.project
