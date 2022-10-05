@@ -55,6 +55,32 @@ app.get('/profile/:id/level', async (req, res) => {
   }
 });
 
+app.get('/shipment/:id', async (req, res) => {
+  res.setHeader(contentType, applicationJson);
+  try {
+    res.end(JSON.stringify(await ml.getShipment(req.params.id)));
+  }catch (err){
+    const {status,message} = err;
+    res.json({
+      status,
+      message
+    })
+  }
+});
+
+app.get('/payment/:id', async (req, res) => {
+  res.setHeader(contentType, applicationJson);
+  try {
+    res.end(JSON.stringify(await ml.getPayment(req.params.id)));
+  }catch (err){
+    const {status,message} = err;
+    res.json({
+      status,
+      message
+    })
+  }
+});
+
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
