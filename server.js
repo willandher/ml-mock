@@ -3,7 +3,7 @@ const cors = require('cors');
 const MercadolibreService = require("./MercadolibreService");
 require('dotenv').config();
 const app = express();
-const port = 1313;
+const port = 8080;
 ml = new MercadolibreService();
 
 const contentType = 'Content-Type';
