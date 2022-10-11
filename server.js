@@ -3,7 +3,7 @@ const cors = require('cors');
 const MercadolibreService = require("./MercadolibreService");
 require('dotenv').config();
 const app = express();
-const port = 3001;
+const port = 3002;
 ml = new MercadolibreService();
 
 const contentType = 'Content-Type';
@@ -11,12 +11,12 @@ const applicationJson = 'application/json';
 
 app.use(cors());
 
-app.get('/get/user', async (_, res) => {
+app.get('/users', async (_, res) => {
   res.setHeader(contentType, applicationJson);
   res.end(JSON.stringify(await ml.getUser()));
 });
 
-app.get('/user/:id/restriction', async (req, res) => {
+app.get('/users/:id/restrictions', async (req, res) => {
   res.setHeader(contentType, applicationJson);
   try {
     res.end(JSON.stringify(await ml.getUserRestrictions(req.params.id)));
@@ -29,7 +29,7 @@ app.get('/user/:id/restriction', async (req, res) => {
   }
 });
 
-app.get('/user/:id/purcharse/:limit?/:offset?', async (req, res) => {
+app.get('/users/:id/purcharses/:limit?/:offset?', async (req, res) => {
   res.setHeader(contentType, applicationJson);
   try {
     res.end(JSON.stringify(await ml.getUserPurchases(req.params.id,req.params.limit,req.params.offset)));
@@ -41,8 +41,10 @@ app.get('/user/:id/purcharse/:limit?/:offset?', async (req, res) => {
     })
   }
 });
-
-app.get('/profile/:id/level', async (req, res) => {
+/**
+ * TODO esto podria pertencer a un catalogo de maestros y ser una asociación uno a uno con los usuarios.
+ */
+app.get('/levels/:id', async (req, res) => {
   res.setHeader(contentType, applicationJson);
   try {
     res.end(JSON.stringify(await ml.getLevel(req.params.id)));
@@ -55,8 +57,9 @@ app.get('/profile/:id/level', async (req, res) => {
   }
 });
 
-app.get('/shipment/:id', async (req, res) => {
+app.get('/shipments/:id', async (req, res) => {
   res.setHeader(contentType, applicationJson);
+  console.log("veamos el servicio y el id : " + req.params.id)
   try {
     res.end(JSON.stringify(await ml.getShipment(req.params.id)));
   }catch (err){
@@ -68,7 +71,7 @@ app.get('/shipment/:id', async (req, res) => {
   }
 });
 
-app.get('/payment/:id', async (req, res) => {
+app.get('/payments/:id', async (req, res) => {
   res.setHeader(contentType, applicationJson);
   try {
     res.end(JSON.stringify(await ml.getPayment(req.params.id)));
